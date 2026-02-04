@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akdeniz Sebze Meyve LTD | Ümmet Duymaz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rose: #b76e79;
+            --rose-grad: linear-gradient(135deg, #b76e79 0%, #ffdfd3 100%);
+            --dark: #080808;
+            --card-bg: #111111;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-wrap { display: flex; flex-direction: column; }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.8rem; background: var(--rose-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 3px; }
+        .slogan { color: var(--rose); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        nav a { color: white; text-decoration: none; font-size: 0.75rem; font-weight: 600; margin-left: 20px; transition: 0.3s; opacity: 0.7; }
+        nav a:hover { color: var(--rose); opacity: 1; }
+
+        /* --- HERO (hl.jpg Arka Planı) --- */
+        .hero {
+            height: 75vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hl.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid var(--rose);
+        }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 6vw, 4rem); letter-spacing: 5px; margin-bottom: 15px; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); }
+        .hero p { font-size: clamp(0.8rem, 3vw, 1.3rem); color: var(--rose); letter-spacing: 4px; font-weight: 400; text-transform: uppercase; }
+
+        .container { max-width: 1200px; margin: auto; padding: 80px 5%; }
+        .section-title { font-family: 'Cinzel', serif; text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: var(--rose); }
+
+        /* --- INTERAKTIF KARTLAR --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.4s;
+            position: relative;
+        }
+        .card:hover { border-color: var(--rose); transform: translateY(-10px); background: #050505; }
+        .card i { font-size: 2.5rem; color: var(--rose); margin-bottom: 20px; }
+        .card h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; margin-bottom: 15px; letter-spacing: 1px; }
+        .card p { font-size: 0.9rem; color: #888; }
+        .card-detail { max-height: 0; overflow: hidden; transition: 0.5s ease; font-size: 0.85rem; color: #b76e79; margin-top: 15px; font-style: italic; }
+        .card.active .card-detail { max-height: 100px; }
+
+        /* --- KURUMSAL FOOTER --- */
+        footer { background: #000; padding: 80px 5% 30px; border-top: 1px solid #222; }
+        .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; max-width: 1200px; margin: auto; }
+        .f-col h4 { font-family: 'Cinzel'; color: var(--rose); margin-bottom: 25px; letter-spacing: 2px; }
+        .f-col p, .f-col span { font-size: 0.9rem; color: #777; line-height: 1.8; }
+        .f-contact-item { display: flex; gap: 15px; margin-bottom: 15px; }
+        .f-contact-item i { color: var(--rose); font-size: 1.1rem; }
+        .f-bottom { text-align: center; margin-top: 60px; padding-top: 25px; border-top: 1px solid #111; font-size: 0.7rem; color: #444; letter-spacing: 1px; }
+
+        /* --- BERAT AI & WA --- */
+        .wa-btn { position: fixed; bottom: 30px; left: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        #berat-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--rose-grad); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 25px; color: black; cursor: pointer; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        #chat-window { position: fixed; bottom: 105px; right: 30px; width: 340px; height: 480px; background: #0a0a0a; border: 1px solid var(--rose); border-radius: 15px; display: none; flex-direction: column; z-index: 1001; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
+
+        /* --- BAN & HACK OVERLAY --- */
+        .overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: none; align-items: center; justify-content: center; text-align: center; flex-direction: column; padding: 20px; }
+    </style>
+</head>
+<body>
+
+<canvas id="h-canvas" style="position:fixed; inset:0; z-index:9998; display:none; pointer-events:none;"></canvas>
+
+<div id="ban-scr" class="overlay">
+    <h1 style="color:red; font-family:'Cinzel'; font-size: 3rem; margin-bottom:20px;">ERİŞİM ENGELLENDİ</h1>
+    <div style="background: red; color: black; padding: 15px; font-weight: 900; margin-bottom: 20px;">SİSTEM İHLALİ: CEZASI HAPİSTİR</div>
+    <p style="color: #444;">IP adresiniz üzerinden yapılan hakaret/ihlaller kayıt altına alınmıştır.</p>
+</div>
+
+<header>
+    <div class="logo-wrap">
+        <span class="logo">AKDENİZ</span>
+        <span class="slogan">Kalite asla tesadüf değildir</span>
+    </div>
+    <nav>
+        <a href="#hakkimizda">KURUMSAL</a>
+        <a href="#nedenbiz">BAŞARILARIMIZ</a>
+        <a href="#iletisim">İLETİŞİM</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>AKDENİZ SEBZE MEYVE LTD.</h1>
+    <p>Ümmet Duymaz Güvencesiyle Yarım Asır</p>
+</section>
+
+<div class="container">
+    <section id="hakkimizda" style="margin-bottom: 120px; text-align: center;">
+        <h2 class="section-title">Biz Kimiz?</h2>
+        <div style="background: #111; padding: 50px; border-radius: 5px; border-bottom: 3px solid var(--rose);">
+            <p style="font-size: 1.1rem; line-height: 2; opacity: 0.8; max-width: 900px; margin: auto;">
+                Ankara'nın kalbinde, <strong>Tarihi Ulus Hali</strong>'nin köklü atmosferinde kurulan <strong>Akdeniz Sebze Meyve LTD.</strong>, sektördeki yarım asırlık tecrübesini modern teknolojiyle birleştiren bir aile kuruluşudur. Kurucumuz <strong>Ümmet Duymaz</strong>'ın "dürüst ticaret" ilkesiyle hizmetinizdeyiz.
+            </p>
+        </div>
+    </section>
+
+        <section id="nedenbiz">
+        <h2 class="section-title">Neden Biz?</h2>
+        <div class="grid">
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <h3>Sıkı Denetim</h3>
+                <p>Ürünlerimiz Ümmet Duymaz onayı olmadan asla sevkiyat edilmez.</p>
+                <div class="card-detail">Ümmet Bey her mahsulü bizzat tadarak, koklayarak ve kalite standartlarımıza uygunluğunu ölçerek sisteme dahil eder.</div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-trophy"></i>
+                <h3>Uluslararası Ödül</h3>
+                <p>2025 Global Gıda Güvenliği Altın Etiketi sahibi.</p>
+                <div class="card-detail">Lojistik hızı ve soğuk zincir muhafaza kategorisinde dünya genelinde tam puan alan nadir kuruluşlardanız.</div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-certificate"></i>
+                <h3>Avrupa Kalite Etiketi</h3>
+                <p>AB Standartlarında %100 Hijyen ve Lojistik Sertifikası.</p>
+                <div class="card-detail">Ürünlerimiz tarladan depomuza kadar Avrupa Birliği gıda kodeksine uygun, sterilize edilmiş araçlarla taşınır.</div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Hızlı Tedarik</h3>
+                <p>Tarladan sofraya en kısa sürede ulaşım ve tazelik garantisi.</p>
+                <div class="card-detail">Ankara geneline günlük 2 farklı sevkiyat periyoduyla, dalından kopalı henüz 24 saat olmamış ürünleri ulaştırıyoruz.</div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-shield-virus"></i>
+                <h3>Sağlık Bakanlığı Onaylı</h3>
+                <p>Tüm depo ve tesislerimiz Sağlık Bakanlığı onaylıdır.</p>
+                <div class="card-detail">Mikrobiyolojik analizlerden geçen ürünlerimizi en hassas sofralarda bile güvenle tüketebilirsiniz.</div>
+            </div>
+
+            <div class="card" onclick="this.classList.toggle('active')">
+                <i class="fa-solid fa-handshake-simple"></i>
+                <h3>Haymanalı Mertliği</h3>
+                <p>Yarım asırlık sarsılmaz itibar ve dürüstlük esası.</p>
+                <div class="card-detail">Haymana’nın mertliğini Ulus Hali’nin tecrübesiyle birleştirdik. 50 yıllık geçmişimiz, gelecekteki dürüstlüğümüzün teminatıdır.</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="f-grid">
+        <div class="f-col">
+            <h4>AKDENİZ LTD.</h4>
+            <p>Ankara'nın taze yüzü. Ümmet Duymaz güvencesiyle tarladan sofraya en kaliteli tedarik zinciri.</p>
+        </div>
+        <div class="f-col">
+            <h4>İLETİŞİM</h4>
+            <div class="f-contact-item"><i class="fa-solid fa-user-tie"></i><span>Ümmet Duymaz (Sahibi)</span></div>
+            <div class="f-contact-item"><i class="fa-solid fa-phone"></i><span>+90 505 849 93 37</span></div>
+            <div class="f-contact-item"><i class="fa-solid fa-location-dot"></i><span>Ulus Hali No:52, Ankara</span></div>
+        </div>
+    </div>
+    <div class="f-bottom">© 2026 AKDENİZ SEBZE MEYVE LTD. | KALİTE ASLA TESADÜF DEĞİLDİR</div>
+</footer>
+
+<a href="https://wa.me/905058499337" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div id="berat-trigger" onclick="toggleChat()"><i class="fa-solid fa-robot"></i></div>
+
+<div id="chat-window">
+    <div style="background:var(--rose); color:black; padding:20px; font-weight:bold; display:flex; justify-content:space-between;">
+        <span>Berat | Kurumsal AI</span><span onclick="toggleChat()" style="cursor:pointer">×</span>
+    </div>
+    <div id="chatBox" style="flex:1; padding:15px; overflow-y:auto; font-size:0.85rem;">
+        <div style="background:#1a1a1a; padding:12px; border-radius:8px; margin-bottom:10px; border-left:4px solid var(--rose);">
+            Selamın aleyküm. Ben Ümmet Duymaz'ın asistanı Berat. Şirketimiz veya kalite belgelerimiz hakkında bilgi almak ister misiniz?
+        </div>
+    </div>
+    <div style="padding:15px; border-top:1px solid #222; display:flex;">
+        <input type="text" id="chatInp" placeholder="Berat'a yazın..." style="flex:1; background:#111; border:none; color:white; padding:12px; outline:none; border-radius:5px;" onkeypress="if(event.key==='Enter') sendMsg()">
+    </div>
+</div>
+
+<script>
+    const forbidden = ["küfür", "argo", "şerefsiz", "aptal", "mal", "salak", "amk", "aq", "skm", "sik"];
+
+    function sync() {
+        if(localStorage.getItem('banned') === 'true') document.getElementById('ban-scr').style.display='flex';
+        const h = localStorage.getItem('hacked') === 'true';
+        document.getElementById('h-canvas').style.display = h ? 'block' : 'none';
+        if(h && !window.hActive) startH();
+    }
+    setInterval(sync, 1000);
+
+    function toggleChat() {
+        const w = document.getElementById('chat-window');
+        w.style.display = (w.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMsg() {
+        const inp = document.getElementById('chatInp');
+        const val = inp.value.trim();
+        if(!val) return;
+
+        addLog("Müşteri: " + val);
+        document.getElementById('chatBox').innerHTML += `<div style="text-align:right; margin-bottom:10px; opacity:0.5;">${val}</div>`;
+
+        if(forbidden.some(w => val.toLowerCase().includes(w))) {
+            localStorage.setItem('banned', 'true');
+            location.reload();
+        } else {
+            setTimeout(() => {
+                let v = val.toLowerCase();
+                let ans = "";
+
+                // --- Berat AI Zeka Katmanı ---
+                if (v.includes("nasılsın") || v.includes("naber")) {
+                    ans = "Hamdolsun, Ümmet Bey ile sevkiyatları takip ediyoruz. Sizleri sormalı, nasıl yardımcı olabilirim?";
+                } 
+                else if (v.includes("selam") || v.includes("merhaba") || v.includes("sa")) {
+                    ans = "Aleyküm selam, hoş geldiniz. Akdeniz Sebze Meyve bünyesinde size nasıl yardımcı olabilirim?";
+                }
+                else if (v.includes("bilgi") || v.includes("neler var")) {
+                    ans = "Yarım asırdır Ankara Ulus Hali'ndeyiz. Ümmet Bey'in titizliğiyle en taze mahsulleri sunuyoruz. Global altın madalyalı tedarik ağımız mevcut.";
+                }
+                else if (v.includes("ümmet") || v.includes("patron") || v.includes("sahibi")) {
+                    ans = "Ümmet Duymaz aslen Haymanalıdır. Kendisi yarım asırlık tecrübesiyle her sabah malın en iyisini bizzat seçer.";
+                }
+                else if (v.includes("fiyat") || v.includes("pahalı")) {
+                    ans = "Bizde kalite esastır. En taze malı, en dürüst fiyatla veririz. Özel teklifler için +90 505 849 93 37'den bize ulaşın.";
+                }
+                else if (v.includes("neredesiniz") || v.includes("adres")) {
+                    ans = "Ankara Ulus Hali, 52 numaralı tezgahtayız. Ümmet Bey'in bir acı kahvesini içmeye her zaman bekleriz.";
+                }
+                else {
+                    ans = "Anladım, bu notu Ümmet Bey'e bizzat iletip size en kısa sürede geri döneceğim.";
+                }
+                
+                document.getElementById('chatBox').innerHTML += `<div style="background:#151515; padding:12px; border-radius:8px; margin-bottom:10px; border-left:3px solid var(--rose);">${ans}</div>`;
+                document.getElementById('chatBox').scrollTop = 9999;
+                addLog("Berat: " + ans);
+            }, 600);
+        }
+        inp.value = "";
+    }
+
+    function addLog(m) {
+        let logs = JSON.parse(localStorage.getItem('akd_logs')) || [];
+        logs.push(`[${new Date().toLocaleTimeString()}] ${m}`);
+        localStorage.setItem('akd_logs', JSON.stringify(logs));
+    }
+
+    function startH() {
+        window.hActive = true;
+        const c = document.getElementById('h-canvas'); const ctx = c.getContext('2d');
+        c.width = window.innerWidth; c.height = window.innerHeight;
+        const drops = Array(Math.floor(c.width/20)).fill(1);
+        setInterval(() => {
+            ctx.fillStyle = "rgba(0,0,0,0.05)"; ctx.fillRect(0,0,c.width,c.height);
+            ctx.fillStyle = "#b76e79"; ctx.font = "15px monospace";
+            drops.forEach((y, i) => {
+                ctx.fillText("AKDENIZ PREMIUM", i*25, y*25);
+                if(y*25 > c.height && Math.random() > 0.98) drops[i] = 0;
+                drops[i]++;
+            });
+        }, 50);
+    }
+</script>
+</body>
+</html>
